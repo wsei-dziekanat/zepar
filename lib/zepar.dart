@@ -23,8 +23,9 @@ class ZeparClient {
     final uri = Uri.parse(url);
     if (cookies != null) {
       headers ??= {};
-      headers['Cookie'] =
-          cookies.entries.map((e) => '${e.key}=${e.value}').join('; ');
+      headers['Cookie'] = cookies.entries.map((entry) {
+        return '${entry.key}=${entry.value}';
+      }).join('; ');
     }
     final response = await Client().get(uri, headers: headers);
     if (response.statusCode == 200) {
