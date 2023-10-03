@@ -1,5 +1,7 @@
 library zepar;
 
+import 'dart:convert';
+
 import 'package:html/dom.dart';
 import 'package:html/parser.dart';
 import 'package:http/http.dart';
@@ -29,9 +31,9 @@ class ZeparClient {
     }
     final response = await Client().get(uri, headers: headers);
     if (response.statusCode == 200) {
-      return parse(response.body);
-    } else {
-      throw Exception('Failed to load $url');
+      final body = utf8.decode(response.bodyBytes);
+      return parse(body);
     }
+    throw Exception('Failed to load $url');
   }
 }
