@@ -33,9 +33,11 @@ class ZeparClient {
     Map<String, String> headers = const {},
     Map<String, String> cookies = const {},
   }) {
-    headers['Cookie'] = cookies.entries.map((entry) {
+    final c = cookies.entries.map((entry) {
       return '${entry.key}=${entry.value}';
     }).join('; ');
+    headers['Cookie'] =
+        headers['Cookie'] != null ? '${headers['Cookie']}; $c' : c;
     _clientData = ClientData(
       baseUrl: baseUrl,
       headers: headers,
@@ -62,9 +64,10 @@ class ZeparClient {
 
     headers ??= _clientData?.headers ?? {};
     if (cookies != null) {
-      headers['Cookie'] = cookies.entries.map((entry) {
+      final c = cookies.entries.map((entry) {
         return '${entry.key}=${entry.value}';
       }).join('; ');
+      headers['Cookie'] != null ? '${headers['Cookie']}; $c' : c;
     }
 
     final url = _clientData!.baseUrl.resolve(path);
