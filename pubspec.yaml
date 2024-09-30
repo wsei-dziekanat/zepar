@@ -1,19 +1,19 @@
 name: zepar
 description: A wrapper for http and html packages
 repository: https://github.com/wsei-dziekanat/zepar
-version: 1.3.0
+version: 1.4.0
 
 environment:
-  sdk: '>=3.3.0 <4.0.0'
-  flutter: '>=3.19.0'
+  sdk: '>=3.5.0 <4.0.0'
+  flutter: '>=3.24.0'
 
 dependencies:
   html: ^0.15.4
-  http: ^1.2.1
+  http: ^1.2.2
   flutter:
     sdk: flutter
 
 dev_dependencies:
-  flutter_lints: ^3.0.1
+  flutter_lints: ^5.0.0
   flutter_test:
     sdk: flutter
