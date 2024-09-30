@@ -1,4 +1,4 @@
-library zepar;
+library;
 
 import 'dart:convert';
 
@@ -66,8 +66,11 @@ class ZeparClient {
     if (cookies != null) {
       final c = cookies.entries.map((entry) {
         return '${entry.key}=${entry.value}';
-      }).join('; ');
-      headers['Cookie'] != null ? '${headers['Cookie']}; $c' : c;
+      });
+      headers['Cookie'] = [
+        ...c,
+        if (headers['Cookie'] != null) headers['Cookie']!,
+      ].join('; ');
     }
 
     final url = _clientData!.baseUrl.resolve(path);
